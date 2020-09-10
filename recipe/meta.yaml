@@ -27,6 +27,7 @@ requirements:
   run:
     - python
     - python-dateutil
+    - natsort
 
 test:
   imports:
