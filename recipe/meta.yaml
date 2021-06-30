@@ -23,16 +23,20 @@ requirements:
   build:
     - python
     - pip
+    - wheel
+    - setuptools
 
   run:
     - python
     - python-dateutil
-    - natsort
-    - future
 
 test:
   imports:
     - croniter.croniter
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: https://github.com/kiorky/croniter
@@ -40,6 +44,7 @@ about:
   license_family: MIT
   summary: 'croniter provides iteration for datetime object with cron like format'
   dev_url: https://github.com/kiorky/croniter
+  doc_url: https://github.com/kiorky/croniter#readme
 
 extra:
   recipe-maintainers:
