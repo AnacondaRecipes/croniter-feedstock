@@ -1,8 +1,8 @@
 {% set name = "croniter" %}
-{% set version = "1.0.15" %}
+{% set version = "1.2.0" %}
 {% set bundle = "tar.gz" %}
 {% set hash_type = "sha256" %}
-{% set hash = "a70dfc9d52de9fc1a886128b9148c89dd9e76b67d55f46516ca94d2d73d58219" %}
+{% set hash = "094422f6aeb9ed646714393503fa388afe4f846e110e1997fea5794e2085c2d7" %}
 
 package:
   name: {{ name }}
