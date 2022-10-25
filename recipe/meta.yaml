@@ -19,11 +19,13 @@ build:
   script: python -m pip install --no-deps --ignore-installed .
 
 requirements:
+  host:
+    - python
+    - wheel
+    - setuptools
   build:
     - python
     - pip
-    - wheel
-    - setuptools
 
   run:
     - python
@@ -48,6 +50,7 @@ about:
   description: "croniter provides iteration for the datetime object with a cron like format."
   dev_url: https://github.com/kiorky/croniter
   doc_url: https://github.com/kiorky/croniter#readme
+  doc_source_url: https://github.com/kiorky/croniter#readme
 
 extra:
   recipe-maintainers:
