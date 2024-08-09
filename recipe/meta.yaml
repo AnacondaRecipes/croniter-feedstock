@@ -12,7 +12,7 @@ source:
 build:
   number: 0
   skip: True  # [py<38]
-  script: python -m pip install --no-deps --ignore-installed .
+  script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir --no-build-isolation -vv
 
 requirements:
   host:
@@ -40,12 +40,10 @@ about:
   license: MIT
   license_family: MIT
   license_url: https://github.com/kiorky/croniter/blob/master/docs/LICENSE
-  license_file: LICENSE
   summary: 'croniter provides iteration for datetime object with cron like format'
   description: "croniter provides iteration for the datetime object with a cron like format."
   dev_url: https://github.com/kiorky/croniter
   doc_url: https://github.com/kiorky/croniter#readme
-  doc_source_url: https://github.com/kiorky/croniter#readme
 
 extra:
   recipe-maintainers:
