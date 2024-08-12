@@ -24,7 +24,7 @@ requirements:
   run:
     - python
     - python-dateutil
-    - pytz
+    - pytz >2021.1
 
 test:
   imports:
