@@ -24,6 +24,11 @@ requirements:
     - python-dateutil
     - pytz >2021.1
 
+
+#   >       time.tzset()
+#   E       AttributeError: module 'time' has no attribute 'tzset'
+{% set ignore_tests = "" %}
+{% set ignore_tests = " --ignore=src/croniter/tests/test_croniter_dst_repetition.py" %}  # [win]
 test:
   source_files:
     - src/croniter
@@ -33,7 +38,7 @@ test:
   commands:
     - pip check
     # pyargs not work tests folder excluded from the site_pkg dir
-    - pytest -v src/croniter
+    - pytest -v src/croniter {{ ignore_tests }}
   requires:
     - pip
     - pytest >=8.3.3
