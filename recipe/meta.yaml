@@ -1,17 +1,16 @@
 {% set name = "croniter" %}
-{% set version = "3.0.3" %}
+{% set version = "6.0.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 34117ec1741f10a7bd0ec3ad7d8f0eb8fa457a2feb9be32e6a2250e158957668
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 37c504b313956114a983ece2c2b07790b1f1094fe9d81cc94739214748255577
 
 build:
   number: 0
-  skip: True  # [py<38]
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir --no-build-isolation -vv
 
 requirements:
@@ -20,20 +19,29 @@ requirements:
     - pip
     - wheel
     - setuptools
-
   run:
     - python
     - python-dateutil
     - pytz >2021.1
 
+
+#   >       time.tzset()
+#   E       AttributeError: module 'time' has no attribute 'tzset'
+{% set ignore_tests = "" %}
+{% set ignore_tests = " --ignore=src/croniter/tests/test_croniter_dst_repetition.py" %}  # [win]
 test:
+  source_files:
+    - src/croniter
   imports:
     - croniter
     - croniter.croniter
-  requires:
-    - pip
   commands:
     - pip check
+    # pyargs not work tests folder excluded from the site_pkg dir
+    - pytest -v src/croniter {{ ignore_tests }}
+  requires:
+    - pip
+    - pytest >=8.3.3
 
 about:
   home: https://github.com/kiorky/croniter
