@@ -1,5 +1,5 @@
 {% set name = "croniter" %}
-{% set version = "6.0.0" %}
+{% set version = "6.2.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,18 +7,24 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 37c504b313956114a983ece2c2b07790b1f1094fe9d81cc94739214748255577
+  sha256: ba60832a5ec8e12e51b8691c3309a113d1cf6526bdf1a48150ce8ec7a532d0ab
 
 build:
   number: 0
+  skip: true  # [py<39]
   script: {{ PYTHON }} -m pip install . --no-deps --ignore-installed --no-cache-dir --no-build-isolation -vv
 
 requirements:
   host:
     - python
     - pip
-    - wheel
-    - setuptools
+    - hatchling >=1.29.0
+    - packaging >=26.0
+    - pathspec >=1.0.4
+    # upstream requred pluggy==1.6.0, but we have 1.5.0 at the moment
+    # TODO: re-pin this once pluggy 1.6.0 available
+    - pluggy >=1.5.0
+    - trove-classifiers >=2026.1.14.14
   run:
     - python
     - python-dateutil
@@ -44,7 +50,7 @@ test:
     - pytest >=8.3.3
 
 about:
-  home: https://github.com/kiorky/croniter
+  home: https://github.com/pallets-eco/croniter
   license: MIT
   license_family: MIT
   license_url: https://github.com/kiorky/croniter/blob/master/LICENSE
