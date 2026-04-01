@@ -21,15 +21,14 @@ requirements:
     - hatchling >=1.29.0
     - packaging >=26.0
     - pathspec >=1.0.4
-    # upstream requred pluggy==1.6.0, but we have 1.5.0 at the moment
-    # TODO: re-pin this once pluggy 1.6.0 available
+    # Temporary downstream deviation from upstream build-system pin (pluggy==1.6.0)
+    # because pluggy 1.6.0 is not yet available here.
+    # TODO: Re-pin exactly when available.
     - pluggy >=1.5.0
     - trove-classifiers >=2026.1.14.14
   run:
     - python
     - python-dateutil
-    - pytz >2021.1
-
 
 #   >       time.tzset()
 #   E       AttributeError: module 'time' has no attribute 'tzset'
@@ -48,16 +47,17 @@ test:
   requires:
     - pip
     - pytest >=8.3.3
+    - pytz >2021.1
 
 about:
   home: https://github.com/pallets-eco/croniter
   license: MIT
   license_family: MIT
-  license_url: https://github.com/kiorky/croniter/blob/master/LICENSE
-  summary: 'croniter provides iteration for datetime object with cron like format'
-  description: "croniter provides iteration for the datetime object with a cron like format."
-  dev_url: https://github.com/kiorky/croniter
-  doc_url: https://github.com/kiorky/croniter#readme
+  license_file: LICENSE
+  summary: croniter provides iteration for datetime object with cron like format
+  description: croniter provides iteration for the datetime object with a cron like format
+  dev_url: https://github.com/pallets-eco/croniter
+  doc_url: https://github.com/pallets-eco/croniter#readme
 
 extra:
   recipe-maintainers:
