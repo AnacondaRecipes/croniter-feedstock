@@ -1,13 +1,13 @@
 {% set name = "croniter" %}
-{% set version = "6.2.2" %}
+{% set version = "6.2.4" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: ba60832a5ec8e12e51b8691c3309a113d1cf6526bdf1a48150ce8ec7a532d0ab
+  sha256: fc124f751b1b04805c2a04b061898b436b45ab2320b045e1e052ea895de65189
 
 build:
   number: 0
@@ -18,14 +18,11 @@ requirements:
   host:
     - python
     - pip
-    - hatchling >=1.29.0
-    - packaging >=26.0
-    - pathspec >=1.0.4
-    # Temporary downstream deviation from upstream build-system pin (pluggy==1.6.0)
-    # because pluggy 1.6.0 is not yet available here.
-    # TODO: Re-pin exactly when available.
-    - pluggy >=1.5.0
-    - trove-classifiers >=2026.1.14.14
+    - hatchling ==1.30.1
+    - packaging ==26.2
+    - pathspec ==1.1.1
+    - pluggy ==1.6.0
+    - trove-classifiers ==2026.6.1.19
   run:
     - python
     - python-dateutil
@@ -34,6 +31,7 @@ requirements:
 #   E       AttributeError: module 'time' has no attribute 'tzset'
 {% set ignore_tests = "" %}
 {% set ignore_tests = " --ignore=src/croniter/tests/test_croniter_dst_repetition.py" %}  # [win]
+
 test:
   source_files:
     - src/croniter
@@ -43,7 +41,7 @@ test:
   commands:
     - pip check
     # pyargs not work tests folder excluded from the site_pkg dir
-    - pytest -v src/croniter {{ ignore_tests }}
+    - pytest -vv src/croniter {{ ignore_tests }}
   requires:
     - pip
     - pytest >=8.3.3
