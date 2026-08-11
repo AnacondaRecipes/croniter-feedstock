@@ -1,12 +1,8 @@
 {% set name = "croniter" %}
 {% set version = "6.2.4" %}
-{% set ignore_tests = "" %}
-{% set ignore_tests = " --ignore=src/croniter/tests/test_croniter_dst_repetition.py" %}  # [win]
 
-#   >       time.tzset()
-#   E       AttributeError: module 'time' has no attribute 'tzset'
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
@@ -25,14 +21,16 @@ requirements:
     - hatchling ==1.30.1
     - packaging ==26.2
     - pathspec ==1.1.1
-    # Temporary downstream deviation from upstream build-system pin (pluggy==1.6.0)
-    # because pluggy 1.6.0 is not yet available here.
-    # TODO: Re-pin exactly when available.
     - pluggy ==1.6.0
     - trove-classifiers ==2026.6.1.19
   run:
     - python
     - python-dateutil
+
+#   >       time.tzset()
+#   E       AttributeError: module 'time' has no attribute 'tzset'
+{% set ignore_tests = "" %}
+{% set ignore_tests = " --ignore=src/croniter/tests/test_croniter_dst_repetition.py" %}  # [win]
 
 test:
   source_files:
@@ -43,7 +41,7 @@ test:
   commands:
     - pip check
     # pyargs not work tests folder excluded from the site_pkg dir
-    - pytest -v src/croniter {{ ignore_tests }}
+    - pytest -vv src/croniter {{ ignore_tests }}
   requires:
     - pip
     - pytest >=8.3.3
