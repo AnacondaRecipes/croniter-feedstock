@@ -1,13 +1,17 @@
 {% set name = "croniter" %}
-{% set version = "6.2.4" %}
+{% set version = "7.0.0" %}
+{% set ignore_tests = "" %}
+{% set ignore_tests = " --ignore=src/croniter/tests/test_croniter_dst_repetition.py" %}  # [win]
 
+#   >       time.tzset()
+#   E       AttributeError: module 'time' has no attribute 'tzset'
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: fc124f751b1b04805c2a04b061898b436b45ab2320b045e1e052ea895de65189
+  sha256: a0b2568303c774f6a4ea2d4ce2e72b1ee911029c7070d64a1befe05cdb107f5a
 
 build:
   number: 0
@@ -18,19 +22,14 @@ requirements:
   host:
     - python
     - pip
-    - hatchling ==1.30.1
-    - packaging ==26.2
+    - hatchling ==1.33.0
+    - packaging ==26.3
     - pathspec ==1.1.1
-    - pluggy ==1.6.0
-    - trove-classifiers ==2026.6.1.19
+    - pluggy ==1.7.0
+    - trove-classifiers ==2026.9.21.13
   run:
     - python
     - python-dateutil
-
-#   >       time.tzset()
-#   E       AttributeError: module 'time' has no attribute 'tzset'
-{% set ignore_tests = "" %}
-{% set ignore_tests = " --ignore=src/croniter/tests/test_croniter_dst_repetition.py" %}  # [win]
 
 test:
   source_files:
