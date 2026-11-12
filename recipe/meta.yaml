@@ -1,5 +1,7 @@
 {% set name = "croniter" %}
 {% set version = "7.0.0" %}
+{% set ignore_tests = "" %}
+{% set ignore_tests = " --ignore=src/croniter/tests/test_croniter_dst_repetition.py" %}  # [win]
 
 #   >       time.tzset()
 #   E       AttributeError: module 'time' has no attribute 'tzset'
